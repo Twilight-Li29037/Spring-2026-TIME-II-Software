@@ -10,9 +10,9 @@ const float R1  = 3300;
 void setup() {
   pinMode(HEATPAD_PIN, OUTPUT);
   digitalWrite(HEATPAD_PIN, LOW);
-  Serial.println(F("Heatpad pin set to LOW"));
-
+  
   Serial.begin(9600);
+  Serial.println(F("Heatpad pin set to LOW"));
   delay(200);
   Serial.println(F("Heatpad and Thermistor Control"));
 }
