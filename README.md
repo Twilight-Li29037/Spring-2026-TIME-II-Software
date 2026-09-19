@@ -1,4 +1,5 @@
 < The following README is updated. for earlier versions please go to  Fall 2024 TIME II Software owned by former TIME II lead Nohl. More updates are yet to be done.>
+
 This is the new repository for all the Software Related to STAC's TIME II Project.
 STACLOOPNANO is a version of STACLOOP1 ported over to work with a Elegoo Nano Board. I have cleaned up the code a bit too and added some new task to fullfill within. This is the MAIN SCRIPT that the nano should be running during the experiment. If you choose to use the nano for additional electrical testing, make sure to compile and build this script on the nano before launch.
 
@@ -15,7 +16,12 @@ To edit or make this file, we recommend using VS Code's PlatformIO Extension to 
 https://platformio.org/
 
 ----------------------------------------------------------------
-TODO UPDATED (4/30/2026)
+TODO UPDATED 
+（9/17/2026）
+1. Go through the code, structure and their function with members.
+2. Currently with a flash overflow. Will try spending the 1st month fixing it.
+
+(4/30/2026)
 1. Continue reading code until all functions can be undrestood.
 2. Create a README for all .cpp files for the new-comers in the future
 3. figure out the library errors on my local computer
