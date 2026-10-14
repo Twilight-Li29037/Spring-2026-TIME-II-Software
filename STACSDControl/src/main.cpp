@@ -4,44 +4,48 @@
 #include <SPI.h>
 
 File testFile;
-int count = 0;
-const int chipSelect = 5;
+const int chipSelect = 5;  
+unsigned long count = 0;
+bool sdReady = false;
 
 void setup() {
   Serial.begin(9600);
   delay(1000);
 
-  if (!SD.begin(chipSelect)) {
-    Serial.println("SD card initialization failed!");
+  Serial.println("Initializing SD card...");
+
+  sdReady = SD.begin(chipSelect);
+
+  if (!sdReady) {
+    Serial.println("SD initialization failed. Check CS, wiring, and format.");
     return;
   }
 
   Serial.println("SD card initialized.");
-  delay(100);
-
-  testFile = SD.open("LOOPTEST.txt", FILE_WRITE);
-  if (testFile) {
-    testFile.println("File Opened! starting count....");
-    Serial.println("File opened successfully.");
-  } else {
-    Serial.println("Failed to open file.");
-  }
-  testFile.close();
-  
 }
 
 void loop() {
+  if (!sdReady) {
+    Serial.println("Loop running, but SD card is not initialized.");
+    delay(3000);
+    return;
+  }
+
   testFile = SD.open("LOOPTEST.txt", FILE_WRITE);
+
   if (testFile) {
     testFile.print("Hello World! Count: ");
     testFile.println(count);
-    testFile.flush();  // write to card
-    testFile.close(); 
+    testFile.close();  // Also flushes buffered data to the card
+
+    Serial.print("File written and closed. Count: ");
+    Serial.println(count);
+    count++;
   } else {
-    Serial.println("File pointer is invalid.");
+    Serial.println("Failed to open LOOPTEST.txt.");
   }
 
-  count++;
   delay(1000);
 }
+
 
